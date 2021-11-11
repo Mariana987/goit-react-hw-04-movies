@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchMovies } from '../../servises/movieFetch';
 import { Link, useRouteMatch } from 'react-router-dom'
-
+import { NavLink } from 'react-router-dom';
 
 
 export default function HomePage() {
@@ -22,6 +22,9 @@ export default function HomePage() {
                 (movies => <li key={movies.id}>
                     <Link to={`/${movies.id}`}>{movies.title}</Link>
                 </li>)}
+            <NavLink to='/details'> Movie Detail Page</NavLink>
         </div>
+
+
     )
 }
