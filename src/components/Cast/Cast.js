@@ -4,19 +4,21 @@ import { FetchMovieCast } from '../../servises/movieFetch';
 import { NavLink } from 'react-router-dom';
 
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w200';
-export default function Cast() {
+export default function Cast({ match }) {
+    const { url } = useParams();
+    // const movieId = match.params.url;
     const [cast, setCast] = useState(null)
     // const { credits } = useParams();
 
-    const { url } = useParams();
+
     const { movieId } = useParams();
     console.log(url)
     useEffect(() => {
         FetchMovieCast(movieId).then(response => {
             setCast(response.cast);
+            console.log(response.cast.map(i => { return (i.id) }))
         })
         return () => {
-
         }
     }, [movieId])
 

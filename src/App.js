@@ -4,8 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import MoviesPage from './components/MoviesPage/MoviesPage';
 import MovieDetailsPage from './components/MovieDetailsPage/MovieDetailsPage';
-import Cast from './components/Cast/Cast';
-import Reviews from './components/Reviews/Reviews';
+
 import Container from './components/Container/Container';
 import NotFoundView from './views/NotFoundView';
 
@@ -25,19 +24,14 @@ function App() {
           <MoviesPage />
         </Route>
 
-        <Route path='/:movieId'
+        <Route path='/:movieId' exact
           render={props => {
             return <MovieDetailsPage {...props} />;
           }} />
-
-        {/* <Route path='/cast'>
-        <Cast />
-      </Route>
-
-      <Route path='/reviews'>
-        <Reviews />
-      </Route> */}
-
+        <Route path='/movies/:movieId' exact
+          render={props => {
+            return <MovieDetailsPage {...props} />;
+          }} />
 
 
         <Route >

@@ -22,7 +22,7 @@ export default function HomePage() {
                 (movies => <li key={movies.id}>
                     <Link to={`/${movies.id}`}>{movies.title}</Link>
                 </li>)}
-            <NavLink to='/details'> Movie Detail Page</NavLink>
+            <NavLink to='/details'> </NavLink>
         </div>
 
 
