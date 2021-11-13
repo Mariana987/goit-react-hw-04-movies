@@ -1,0 +1,21 @@
+.navigation{
+    font-size:x-large;
+    margin-top: 30px ;
+    margin-left: 30px;
+    margin-bottom: 30px;
+   
+}
+
+.navItem{
+     text-decoration: none;
+     font-weight: bolder;
+margin-right: 30px;
+display: inline-block;
+height: 100%;
+color: rgb(143, 66, 206);
+}
+
+.navItem:hover{
+    background-color: rgba(198, 174, 218, 0.534);
+      /* zoom: 120%; */
+}

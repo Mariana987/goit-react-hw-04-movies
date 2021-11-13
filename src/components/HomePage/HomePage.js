@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { fetchMovies } from '../../servises/movieFetch';
 import { Link, useRouteMatch } from 'react-router-dom'
 import { NavLink } from 'react-router-dom';
-
+import s from './HomePage.module.css'
 
 export default function HomePage() {
-    const { url } = useRouteMatch();
+    // const { url } = useRouteMatch();
 
 
     const [popularMovies, setPopularMovies] = useState(null)
@@ -18,11 +18,14 @@ export default function HomePage() {
     }, []);
     return (
         <div>
-            {popularMovies && popularMovies.map
-                (movies => <li key={movies.id}>
-                    <Link to={`/${movies.id}`}>{movies.title}</Link>
-                </li>)}
-            <NavLink to='/details'> </NavLink>
+            <h1>Popular Today</h1>
+            <ul>
+                {popularMovies && popularMovies.map
+                    (movies => <li key={movies.id} className={s.movieList}>
+                        <Link to={`/${movies.id}`} className={s.movieItem}>{movies.title}</Link>
+                    </li>)}
+                <NavLink to='/details'> </NavLink>
+            </ul>
         </div>
 
 

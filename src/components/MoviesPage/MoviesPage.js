@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { FetchSearchMovies } from '../../servises/movieFetch';
-
+import s from './MoviesPage.module.css'
 export default function MoviesPage() {
     const history = useHistory();
     const location = useLocation();
@@ -41,21 +41,21 @@ export default function MoviesPage() {
         <div>
             <form onSubmit={searchMovies}>
                 <label>
-                    <input type="text" />
+                    <input className={s.search} type="text" />
                 </label>
-                <button type="submit">Search</button>
+                <button className={s.searchButton} type="submit">Search</button>
             </form>
             {search && (
-                <ol>
+                <ol >
                     {search.map(data => {
                         console.log(data.id)
                         return (
-                            <li key={data.id}>
+                            <li key={data.id} className={s.movieList}>
                                 <Link
                                     to={{
                                         pathname: `/movies/${data.id}`,
                                         state: { from: location },
-                                    }}>
+                                    }} className={s.movieItem}>
 
                                     {data.title}
                                 </Link>

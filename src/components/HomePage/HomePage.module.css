@@ -1,0 +1,15 @@
+.movieList{
+  font-size: large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+list-style-type: square;
+
+}
+.movieItem{
+     text-decoration: none;
+    color: rgb(143, 66, 206);
+}
+
+.movieItem:hover{
+    background-color: rgba(198, 174, 218, 0.534);
+    zoom: 120%;
+}

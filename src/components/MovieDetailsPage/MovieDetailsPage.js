@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import { FetchMovieDetails } from '../../servises/movieFetch';
 import { NavLink } from 'react-router-dom';
 import Cast from '../Cast/Cast';
-import Reviews from '../Reviews/Reviews'
+import Reviews from '../Reviews/Reviews';
+import s from './MovieDetailsPage.module.css'
 
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w200';
 
@@ -25,28 +26,34 @@ export default function MoviesPageDetails({ match, history, location }) {
     };
 
     return (
-        <div>
+        <div >
             {movieDetails && <>
                 {/* <Button handleClick={goBack} /> */}
-                <button type="button" onClick={goBack}>
+                <button type="button" onClick={goBack} className={s.button}>
                     Go back
                 </button>
 
-                <img src={`${IMAGE_URL}${movieDetails.poster_path}`} alt={movieDetails.title} />
-                <h1>{movieDetails.title}</h1>
-                <p>
-                    {movieDetails.overview}
-                </p>
-                <h2>Genres</h2>
-                {movieDetails.genres.map(
-                    genres => {
-                        return (
-                            <li key={movieDetails.genres.id}>{genres.name}</li>)
-                    }
-                )}
+                <div className={s.info}>
+                    <img className={s.image} src={`${IMAGE_URL}${movieDetails.poster_path}`} alt={movieDetails.title} />
+                    <div className={s.data}>   <h1 className={s.title}>{movieDetails.title}</h1>
+                        <p className={s.overview}>
+                            {movieDetails.overview}
+                        </p>
+                        <h2>Genres</h2>
+                        {movieDetails.genres.map(
+                            genres => {
+                                return (
+                                    <li key={movieDetails.genres.id}>{genres.name}</li>)
+                            }
+                        )}</div>
 
-                <NavLink to={`${match.url}/cast`}>Cast </NavLink>
-                <NavLink to={`${match.url}/reviews`}>Review </NavLink>
+                </div>
+                <hr className={s.shadow} />
+                <h4>Additionnal Information</h4>
+                <div className={s.addInfo}>
+                    <NavLink className={s.infoLink} to={`${match.url}/cast`}>Cast </NavLink>
+                    <NavLink className={s.infoLink} to={`${match.url}/reviews`}>Review </NavLink>
+                </div>
 
 
                 <Suspense fallback={<h1>Загрузка дополнительной информации о фильме...</h1>}>
@@ -64,12 +71,3 @@ export default function MoviesPageDetails({ match, history, location }) {
     )
 }
 
-
- // (
-    //     <div>
-    //         {movieDetails && <>
-    //             <img src={} alt={movieDetails.title} />
-
-    //         </>}
-    //     </div>
-    // )
