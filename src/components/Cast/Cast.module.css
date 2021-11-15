@@ -1,0 +1,42 @@
+.castList{
+   
+    display: flex;
+   flex-wrap: wrap;
+  justify-content: space-between;
+}
+.container{
+    display: block;
+    width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.castItem{
+text-decoration: none;
+margin-right: 30px;
+margin-bottom: 15px;
+}
+li{
+    text-decoration: none;
+    list-style-type: none;
+}
+.castTitle{
+    display: block;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bolder;
+    margin-left: auto;
+    margin-right: auto;
+}
+.castImg{
+    display: block;
+      box-shadow: 10px 8px 18px rgba(0, 0, 0, 0.55);
+      cursor: pointer;
+}
+.castImg:hover{
+    zoom: 105%;
+}
+.castInfo{
+    font-size: large;
+    font-weight: bold;
+}

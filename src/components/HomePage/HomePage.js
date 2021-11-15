@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
 import { fetchMovies } from '../../servises/movieFetch';
-import { Link, useRouteMatch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom';
 import s from './HomePage.module.css'
 
 export default function HomePage() {
-    // const { url } = useRouteMatch();
-
-
     const [popularMovies, setPopularMovies] = useState(null)
-
-
     useEffect(() => {
         fetchMovies().then(response => {
             setPopularMovies(response.results);
@@ -27,7 +22,5 @@ export default function HomePage() {
                 <NavLink to='/details'> </NavLink>
             </ul>
         </div>
-
-
     )
 }

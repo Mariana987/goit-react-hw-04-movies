@@ -4,15 +4,20 @@ import { useState, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { FetchSearchMovies } from '../../servises/movieFetch';
 import s from './MoviesPage.module.css'
+import { toast } from 'react-toastify';
+import PropTypes from "prop-types";
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function MoviesPage() {
     const history = useHistory();
     const location = useLocation();
     const [search, setSearch] = useState(null);
 
     const searchOrder = new URLSearchParams(location.search).get('query');
-
+    console.log(toast.error)
     useEffect(() => {
         if (!searchOrder) {
+            toast.error("Enter something!");
             setSearch(null);
             return;
         }
@@ -24,6 +29,9 @@ export default function MoviesPage() {
 
     const searchMovies = event => {
         event.preventDefault();
+        // if (searchOrder === "") {
+        //     return alert("not so fast :)");
+        // }
 
         history.push({
             ...location.pathname,
@@ -41,7 +49,7 @@ export default function MoviesPage() {
         <div>
             <form onSubmit={searchMovies}>
                 <label>
-                    <input className={s.search} type="text" />
+                    <input className={s.search} type="text" placeholder="Search movies" />
                 </label>
                 <button className={s.searchButton} type="submit">Search</button>
             </form>
@@ -69,7 +77,9 @@ export default function MoviesPage() {
 }
 
 
-
+MoviesPage.propTypes = {
+    onSubmit: PropTypes.func,
+};
 
 
 

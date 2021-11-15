@@ -5,11 +5,7 @@ const Navigation = () =>
     <>
         <nav className={s.navigation}>
             <NavLink exact to='/' className={s.navItem}> Home Page</NavLink>
-            <NavLink to='/movies' className={s.navItem}>Movie Page </NavLink>
-            {/* <NavLink to='/details'> Movie Detail Page</NavLink> */}
-            {/* <NavLink to='/cast'>Cast </NavLink>
-        <NavLink to='/reviews'>Review </NavLink> */}
-
+            <NavLink exact to='/movies' className={s.navItem} >Movie Page </NavLink>
         </nav>
         <hr />
     </>;

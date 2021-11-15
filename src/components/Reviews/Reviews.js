@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FetchMovieReviews } from '../../servises/movieFetch';
-import { NavLink } from 'react-router-dom';
+import s from './Reviews.module.css';
 
-export default function Rewiews() {
+export default function Reviews() {
     const [reviews, setReviews] = useState(null);
     const { movieId } = useParams();
 
@@ -12,19 +12,25 @@ export default function Rewiews() {
             setReviews(response.results);
         });
     }, [movieId]);
-
-    return reviews ? (
-        <ul>
-            {reviews.map(i => {
-                return (
-                    <li key={i.id}>
-                        <h2>Author: {i.author_details.username}</h2>
-                        <p>{i.content}</p>
-                    </li>
-                );
-            })}
+    return (
+        <ul className={s.reviewsList}>
+            {reviews && reviews.length === 0 ? (
+                <p>Sorry, there are no reviews for this movie.</p>)
+                : (
+                    reviews && (
+                        reviews.map(i => {
+                            return (
+                                <li key={i.id}>
+                                    <h2>Author: {i.author_details.username}</h2>
+                                    <p>{i.content}</p>
+                                </li>
+                            )
+                        })
+                    )
+                )
+            }
         </ul>
-    ) : (
-        <p>We don't have any reviews for this movie.</p>
-    );
+    )
 }
+
+
