@@ -1,5 +1,5 @@
 import { useState, useEffect, Suspense } from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, useRouteMatch, useLocation, useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { FetchMovieDetails } from '../../servises/movieFetch';
 import { NavLink } from 'react-router-dom';
@@ -9,10 +9,14 @@ import s from './MovieDetailsPage.module.css'
 
 const imageUrl = 'https://image.tmdb.org/t/p/w200';
 
-export default function MoviesPageDetails({ match, history, location }) {
+export default function MoviesPageDetails({ match }) {
     const { movieId } = useParams();
     const { url } = useRouteMatch();
-    const [movieDetails, setMovieDetails] = useState(null)
+    const [movieDetails, setMovieDetails] = useState(null);
+    const location = useLocation();
+    const history = useHistory();
+    console.log(location)
+
     useEffect(() => {
         FetchMovieDetails(movieId).then(response => {
             setMovieDetails(response);
@@ -20,7 +24,8 @@ export default function MoviesPageDetails({ match, history, location }) {
     }, [movieId])
 
     const goBack = () => {
-        history.push(location?.state?.from ?? '/');
+
+        history.push(location?.state?.from ?? "/");
     };
 
     return (
@@ -46,8 +51,16 @@ export default function MoviesPageDetails({ match, history, location }) {
             <hr className={s.shadow} />
             <h4>Additionnal Information:</h4>
             <div className={s.addInfo}>
-                <NavLink className={s.infoLink} to={`${url}/cast`}>Cast </NavLink>
-                <NavLink className={s.infoLink} to={`${url}/reviews`}>Review </NavLink>
+                <NavLink className={s.infoLink} to={{
+                    pathname: `${url}/cast`,
+                    state: { from: location },
+                }}
+                >Cast </NavLink>
+                <NavLink className={s.infoLink} to={{
+                    pathname: `${url}/reviews`,
+                    state: { from: location }
+                }}
+                >Review </NavLink>
             </div>
             <Suspense fallback={<h1>Loading more information about this movie...</h1>}>
                 <Switch>
